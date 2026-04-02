@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mockup 13 — Gradient Modern</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #0f0c29, #302b63, #24243e);
+      display: flex;
+      justify-content: center;
+      padding: 60px 24px;
+      font-family: 'Sora', sans-serif;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 600px;
+      min-height: 65vh;
+      background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border-radius: 20px;
+      padding: 48px 44px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.3);
+    }
+
+    .accent {
+      width: 40px;
+      height: 4px;
+      background: linear-gradient(90deg, #f093fb, #f5576c);
+      border-radius: 2px;
+      margin-bottom: 28px;
+    }
+
+    .title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #ffffff;
+      border: none;
+      outline: none;
+      width: 100%;
+      background: transparent;
+      font-family: inherit;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+
+    .title:empty::before {
+      content: 'Give it a title';
+      color: rgba(255,255,255,0.2);
+    }
+
+    .body {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.6);
+      border: none;
+      outline: none;
+      width: 100%;
+      min-height: 350px;
+      background: transparent;
+      font-family: inherit;
+      resize: none;
+      font-weight: 300;
+    }
+
+    .body:empty::before {
+      content: 'Write your thoughts...';
+      color: rgba(255,255,255,0.15);
+    }
+
+    ::selection {
+      background: rgba(240, 147, 251, 0.3);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="accent"></div>
+    <div class="title" contenteditable="true" spellcheck="false">Product launch checklist</div>
+    <div class="body" contenteditable="true" spellcheck="false">Landing page copy is finalized. The hero section needs one more pass — the value prop isn't punchy enough. Something shorter. Something that makes you stop scrolling.
+
+Analytics are wired up: Mixpanel for events, Plausible for pageviews. We're tracking signup flow drop-off at each step.
+
+Launch window: Tuesday 10am EST. That gives us the full news cycle before European markets close. Social posts are scheduled. Press emails go out Monday night.
+
+This one feels different. This one feels ready.</div>
+  </div>
+</body>
+</html>

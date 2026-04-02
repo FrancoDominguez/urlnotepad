@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mockup 14 — PostHog Style</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: #EEEDE9;
+      display: flex;
+      justify-content: center;
+      padding: 60px 24px;
+      font-family: 'DM Sans', -apple-system, sans-serif;
+    }
+
+    .window {
+      width: 100%;
+      max-width: 680px;
+      min-height: 65vh;
+      background: #FFFFFF;
+      border: 1.5px solid #D8D5C9;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    /* ── window chrome ── */
+    .chrome {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: #F9F7F2;
+      border-bottom: 1.5px solid #E5E2D9;
+    }
+
+    .dots {
+      display: flex;
+      gap: 7px;
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot.r { background: #FF5F57; }
+    .dot.y { background: #FEBC2E; }
+    .dot.g { background: #28C840; }
+
+    .chrome-title {
+      font-size: 0.8rem;
+      color: #9E9B91;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .chrome-right {
+      width: 52px; /* balance the dots */
+    }
+
+    /* ── toolbar ── */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: #FDFCF9;
+      border-bottom: 1.5px solid #E5E2D9;
+      flex-wrap: wrap;
+    }
+
+    .tool-group {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .tool-group + .tool-group {
+      margin-left: 4px;
+      padding-left: 10px;
+      border-left: 1.5px solid #E5E2D9;
+    }
+
+    .tool-btn {
+      width: 30px;
+      height: 28px;
+      border-radius: 5px;
+      border: none;
+      background: transparent;
+      color: #7A7870;
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tool-btn:hover { background: #F0EDE4; }
+    .tool-btn.active { background: #E8E4DA; color: #1D1F27; }
+
+    .tool-select {
+      height: 28px;
+      padding: 0 8px;
+      border-radius: 5px;
+      border: 1.5px solid #E5E2D9;
+      background: #fff;
+      font-size: 0.75rem;
+      color: #7A7870;
+      font-family: inherit;
+      cursor: pointer;
+      appearance: none;
+    }
+
+    .toolbar-spacer { flex: 1; }
+
+    .save-badge {
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: #9E9B91;
+      background: #F0EDE4;
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .save-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #28C840;
+    }
+
+    /* ── content area ── */
+    .content {
+      padding: 40px 44px 48px;
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: #F1A82C;
+      color: #fff;
+      padding: 3px 9px;
+      border-radius: 4px;
+    }
+
+    .tag.blue {
+      background: #36A5E8;
+    }
+
+    .meta-date {
+      font-size: 0.75rem;
+      color: #B0AD9F;
+    }
+
+    .meta-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #D0CDC3;
+    }
+
+    .meta-author {
+      font-size: 0.75rem;
+      color: #B0AD9F;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .avatar {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #F1A82C, #F06530);
+    }
+
+    .title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #1D1F27;
+      border: none;
+      outline: none;
+      width: 100%;
+      background: transparent;
+      font-family: inherit;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1.5px solid #EDEADF;
+    }
+
+    .title:empty::before {
+      content: 'Untitled';
+      color: #C8C5BA;
+    }
+
+    .body {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #50504A;
+      border: none;
+      outline: none;
+      width: 100%;
+      min-height: 320px;
+      background: transparent;
+      font-family: inherit;
+      resize: none;
+      font-weight: 400;
+    }
+
+    .body:empty::before {
+      content: 'Start typing...';
+      color: #C8C5BA;
+    }
+
+    /* ── bottom bar ── */
+    .bottombar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: #F9F7F2;
+      border-top: 1.5px solid #E5E2D9;
+      font-size: 0.7rem;
+      color: #B0AD9F;
+    }
+
+    .word-count {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .shortcut {
+      background: #EDEADF;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 0.65rem;
+      color: #8A877C;
+      font-weight: 500;
+    }
+
+    ::selection {
+      background: rgba(241, 168, 44, 0.2);
+      color: #1D1F27;
+    }
+  </style>
+</head>
+<body>
+  <div class="window">
+    <div class="chrome">
+      <div class="dots">
+        <div class="dot r"></div>
+        <div class="dot y"></div>
+        <div class="dot g"></div>
+      </div>
+      <div class="chrome-title">
+        <span>📄</span> note.mdx <span style="font-size:0.6rem;">▾</span>
+      </div>
+      <div class="chrome-right"></div>
+    </div>
+
+    <div class="toolbar">
+      <div class="tool-group">
+        <button class="tool-btn" style="font-size:0.7rem;">↩</button>
+        <button class="tool-btn" style="font-size:0.7rem;">↪</button>
+      </div>
+      <div class="tool-group">
+        <select class="tool-select"><option>Zoom</option></select>
+      </div>
+      <div class="tool-group">
+        <button class="tool-btn active">B</button>
+        <button class="tool-btn"><i>I</i></button>
+        <button class="tool-btn" style="text-decoration:underline;">U</button>
+      </div>
+      <div class="tool-group">
+        <button class="tool-btn" style="font-size:0.65rem;">≡</button>
+        <button class="tool-btn" style="font-size:0.65rem;">☰</button>
+        <button class="tool-btn" style="font-size:0.65rem;">⫶</button>
+      </div>
+      <div class="tool-group">
+        <select class="tool-select"><option>Font</option></select>
+      </div>
+      <div class="toolbar-spacer"></div>
+      <div class="save-badge"><div class="save-dot"></div> Saved</div>
+    </div>
+
+    <div class="content">
+      <div class="meta-row">
+        <div class="tag">NOTE</div>
+        <div class="tag blue">DRAFT</div>
+        <div class="meta-dot"></div>
+        <div class="meta-date">Mar 31, 2026</div>
+        <div class="meta-dot"></div>
+        <div class="meta-author">
+          <div class="avatar"></div>
+          You
+        </div>
+      </div>
+
+      <div class="title" contenteditable="true" spellcheck="false">Why our funnel is leaking</div>
+      <div class="body" contenteditable="true" spellcheck="false">Looked at the signup flow in PostHog today. 40% drop-off between email verification and onboarding. That's wild.
+
+Hypothesis: the verification email takes too long. Median delivery time is 12 seconds but p95 is over a minute. People bounce. They're not coming back.
+
+Quick wins:
+- Switch to a faster email provider
+- Add a "check your spam folder" nudge after 10s
+- Let people skip verification and gate later
+
+The data doesn't lie. We're losing users to an email server.</div>
+    </div>
+
+    <div class="bottombar">
+      <div class="word-count">
+        <span>76 words</span>
+        <span>·</span>
+        <span>6 lines</span>
+      </div>
+      <div>
+        <span class="shortcut">⌘ S</span> save
+        &nbsp;&nbsp;
+        <span class="shortcut">⌘ ⇧ P</span> share
+      </div>
+    </div>
+  </div>
+</body>
+</html>

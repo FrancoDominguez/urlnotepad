@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mockup 05 — Terminal</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: #1a1b26;
+      display: flex;
+      justify-content: center;
+      padding: 40px 24px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .window {
+      width: 100%;
+      max-width: 720px;
+      min-height: 70vh;
+      background: #13141c;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      border: 1px solid #2a2b3d;
+    }
+
+    .titlebar {
+      height: 38px;
+      background: #1a1b2e;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      gap: 8px;
+      border-bottom: 1px solid #2a2b3d;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .dot.red { background: #ff5f57; }
+    .dot.yellow { background: #febc2e; }
+    .dot.green { background: #28c840; }
+
+    .content {
+      padding: 32px 28px;
+    }
+
+    .prompt { color: #7aa2f7; font-size: 0.75rem; margin-bottom: 4px; }
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #a9dc76;
+      border: none;
+      outline: none;
+      width: 100%;
+      background: transparent;
+      font-family: inherit;
+      line-height: 1.4;
+      margin-bottom: 28px;
+    }
+
+    .title:empty::before {
+      content: 'untitled';
+      color: #3b3d54;
+    }
+
+    .prompt2 { color: #7aa2f7; font-size: 0.75rem; margin-bottom: 4px; }
+
+    .body {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: #a9b1d6;
+      border: none;
+      outline: none;
+      width: 100%;
+      min-height: 400px;
+      background: transparent;
+      font-family: inherit;
+      resize: none;
+      font-weight: 300;
+    }
+
+    .body:empty::before {
+      content: '> _';
+      color: #3b3d54;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 18px;
+      background: #a9dc76;
+      animation: blink 1s step-end infinite;
+      vertical-align: text-bottom;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    ::selection {
+      background: #33467c;
+      color: #c0caf5;
+    }
+  </style>
+</head>
+<body>
+  <div class="window">
+    <div class="titlebar">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+    </div>
+    <div class="content">
+      <div class="prompt">~/notes $  cat title.txt</div>
+      <div class="title" contenteditable="true" spellcheck="false">server migration plan</div>
+      <div class="prompt2">~/notes $  cat body.txt</div>
+      <div class="body" contenteditable="true" spellcheck="false">Phase 1: spin up new instances in us-east-2
+Phase 2: replicate databases with pg_dump
+Phase 3: update DNS records, TTL=300
+Phase 4: monitor for 48h before decommission
+
+Remember: the old Redis cluster has that weird memory leak. Don't migrate the config — rebuild it clean.</div>
+    </div>
+  </div>
+</body>
+</html>
